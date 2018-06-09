@@ -1,3 +1,5 @@
+# GitLab configuration
+
 Configure GitLab nginx to proxy the Visual Studio requests through our proxy:
 
 ```
@@ -67,3 +69,19 @@ Show the service status and logs:
 systemctl status gitlab-source-link-proxy
 journalctl -u gitlab-source-link-proxy
 ```
+
+# Visual Studio configuration
+
+To be able to step through external source code you need to disable `Enable Just My Code` setting in the `Tools | Options | Debugger` window.
+
+To be able to download source code you need to configure Visual Studio to authenticate your GitLab domain requests:
+
+  1. Open the `Developer Command Prompt for VS 2017`
+  2. run `notepad "%VSINSTALLDIR%\Common7\IDE\CommonExtensions\Platform\Debugger\VsDebugPresentationPackage.pkgdef"`
+  3. Add your GitLab domain as a Git Credential Manager Authority in the corresponding ini section, e.g.:
+      ```ini
+      [$RootKey$\Debugger\GitCredentialManager\Authorities]
+      "raw.githubusercontent.com"="https://github.com"
+      "gitlab.example.com"="https://gitlab.example.com"
+      ```
+  4. run `devenv /setup`
