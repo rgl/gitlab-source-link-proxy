@@ -35,7 +35,7 @@ Manually run it:
 Try it:
 
 ```bash
-http --verify=no -v https://root:password@gitlab.example.com/root/ubuntu-vagrant/raw/master/.gitignore User-Agent:SourceLink
+http --verify=no -v https://root:password@gitlab.example.com/example/ubuntu-vagrant/raw/master/.gitignore User-Agent:SourceLink
 ```
 
 Install it as a systemd service:
@@ -74,7 +74,11 @@ journalctl -u gitlab-source-link-proxy
 
 To be able to step through external source code you need to disable `Enable Just My Code` setting in the `Tools | Options | Debugger` window.
 
-To be able to download source code you need to configure Visual Studio to authenticate your GitLab domain requests:
+To be able to download source code you need to configure Visual Studio to authenticate your GitLab domain requests.
+
+For Visual Studio 15.8+, open the `Tools | Options | Debugger` window and check `Fall back to Git Credential Manager authentication for all Source Link requests`.
+
+For older versions of Visual Studio 15:
 
   1. Open the `Developer Command Prompt for VS 2017`
   2. run `notepad "%VSINSTALLDIR%\Common7\IDE\CommonExtensions\Platform\Debugger\VsDebugPresentationPackage.pkgdef"`
