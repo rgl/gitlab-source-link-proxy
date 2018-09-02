@@ -1,3 +1,7 @@
+Basic Authorization support for GitLab Source Link requests.
+
+You can see this used at [rgl/gitlab-vagrant](https://github.com/rgl/gitlab-vagrant).
+
 # GitLab configuration
 
 Configure GitLab nginx to proxy the Visual Studio requests through our proxy:
@@ -18,12 +22,10 @@ vim /var/opt/gitlab/nginx/conf/gitlab-http.conf
 gitlab-ctl restart nginx
 ```
 
-Build this binary:
+Build the binary:
 
 ```bash
-go get -u -v github.com/jamiealquiza/bicache
-go get -u -v golang.org/x/crypto/blake2b
-go build -v
+make
 ```
 
 Manually run it:
@@ -58,7 +60,22 @@ install -d -o root -g gitlab-source-link-proxy -m 750 /opt/gitlab-source-link-pr
 install -o root -g root -m 555 gitlab-source-link-proxy /opt/gitlab-source-link-proxy/bin
 
 # install the systemd service.
-install -o root -g root -m 644 gitlab-source-link-proxy.service /etc/systemd/system/
+cat >/etc/systemd/system/gitlab-source-link-proxy.service <<EOF
+[Unit]
+Description=gitlab-source-link-proxy
+After=network.target
+
+[Service]
+Type=simple
+User=gitlab-source-link-proxy
+Group=gitlab-source-link-proxy
+ExecStart=/opt/gitlab-source-link-proxy/bin/gitlab-source-link-proxy --gitlab-base-url https://gitlab.example.com
+WorkingDirectory=/opt/gitlab-source-link-proxy
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+EOF
 systemctl enable gitlab-source-link-proxy
 systemctl start gitlab-source-link-proxy
 ```

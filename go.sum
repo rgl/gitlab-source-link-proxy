@@ -1,0 +1,10 @@
+github.com/jamiealquiza/bicache v2.0.0+incompatible h1:0V+RlPLr4g9PkC2CZdZg/6NlN6bgdhlqdEsP1Fm6Q8U=
+github.com/jamiealquiza/bicache v2.0.0+incompatible/go.mod h1:xSPiksbz+HyGfZ+2f5KngWsTJex9wUilkK4sIdXDgUM=
+github.com/jamiealquiza/fnv v1.0.0 h1:4NwlkaoZiLhqk008EY5+MTGVPRQZgRG/6B7+jN7ueT8=
+github.com/jamiealquiza/fnv v1.0.0/go.mod h1:iJRnFlvFvZpWKZd+KljYXcyQLasMIKAVuQhx63P4DUk=
+github.com/jamiealquiza/tachymeter v1.1.2 h1:cOgpMYFejxGSAe5f5JOb7uNPZ53kmEYwwpCrw1vDh2Q=
+github.com/jamiealquiza/tachymeter v1.1.2/go.mod h1:Ayf6zPZKEnLsc3winWEXJRkTBhdHo58HODAu1oFJkYU=
+golang.org/x/crypto v0.0.0-20180830192347-182538f80094 h1:rVTAlhYa4+lCfNxmAIEOGQRoD23UqP72M3+rSWVGDTg=
+golang.org/x/crypto v0.0.0-20180830192347-182538f80094/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
+golang.org/x/sys v0.0.0-20180831094639-fa5fdf94c789 h1:T8D7l6WB3tLu+VpKvw06ieD/OhBi1XpJmG1U/FtttZg=
+golang.org/x/sys v0.0.0-20180831094639-fa5fdf94c789/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
