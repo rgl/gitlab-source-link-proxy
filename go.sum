@@ -4,6 +4,8 @@ github.com/jamiealquiza/fnv v1.0.0 h1:4NwlkaoZiLhqk008EY5+MTGVPRQZgRG/6B7+jN7ueT
 github.com/jamiealquiza/fnv v1.0.0/go.mod h1:iJRnFlvFvZpWKZd+KljYXcyQLasMIKAVuQhx63P4DUk=
 github.com/jamiealquiza/tachymeter v1.1.2 h1:cOgpMYFejxGSAe5f5JOb7uNPZ53kmEYwwpCrw1vDh2Q=
 github.com/jamiealquiza/tachymeter v1.1.2/go.mod h1:Ayf6zPZKEnLsc3winWEXJRkTBhdHo58HODAu1oFJkYU=
+github.com/kouhin/envflag v0.0.0-20150818174321-0e9a86061649 h1:l95EUBxc0iMtMeam3pHFb9jko9ntaLYe2Nc+2evKElM=
+github.com/kouhin/envflag v0.0.0-20150818174321-0e9a86061649/go.mod h1:BT0PpXv8Y4EL/WUsQmYsQ2FSB9HwQXIuvY+pElZVdFg=
 golang.org/x/crypto v0.0.0-20180830192347-182538f80094 h1:rVTAlhYa4+lCfNxmAIEOGQRoD23UqP72M3+rSWVGDTg=
 golang.org/x/crypto v0.0.0-20180830192347-182538f80094/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
 golang.org/x/sys v0.0.0-20180831094639-fa5fdf94c789 h1:T8D7l6WB3tLu+VpKvw06ieD/OhBi1XpJmG1U/FtttZg=

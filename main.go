@@ -15,6 +15,7 @@ import (
 	"strings"
 
 	"github.com/jamiealquiza/bicache"
+	"github.com/kouhin/envflag"
 	"golang.org/x/crypto/blake2b"
 )
 
@@ -97,7 +98,9 @@ var (
 )
 
 func main() {
-	flag.Parse()
+	if err := envflag.Parse(); err != nil {
+		panic(err)
+	}
 
 	if *baseGitLabURLFlag == "" {
 		log.Printf("Usage of %s:\n", os.Args[0])
