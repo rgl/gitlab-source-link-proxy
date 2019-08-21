@@ -5,7 +5,8 @@ jobs:
     name: Build
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
         with:
           fetch-depth: 1
       - name: Set up Go 1.12
