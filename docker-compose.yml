@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+  gitlab-source-link-proxy:
+    image: gitlab-source-link-proxy
+    environment:
+      - "GITLAB_BASE_URL=https://gitlab.example.com/"
+      - "LISTEN_ADDRESS=0.0.0.0:7000"
+    build: .
+    ports:
+      - 7000:7000
