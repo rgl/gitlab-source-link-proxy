@@ -9,8 +9,8 @@ Configure GitLab nginx to proxy the Visual Studio requests through our proxy:
 ```
 vim /var/opt/gitlab/nginx/conf/gitlab-http.conf 
 ...
-  location / {
-    if ($http_user_agent ~ "SourceLink") {
+  location ~ (.*/raw/.*) {
+    if ($http_user_agent ~ "(Microsoft-Symbol-Server|SourceLink)") {
       #proxy_set_header Authorization "Basic cm9vdDpwYXNzd29yZA==";
       proxy_pass http://127.0.0.1:7000;
       break;
@@ -38,6 +38,17 @@ Try it:
 
 ```bash
 http --verify=no -v https://root:password@gitlab.example.com/example/ubuntu-vagrant/raw/master/.gitignore User-Agent:SourceLink
+```
+
+Or using curl:
+```
+curl --user-agent "SourceLink" -u username "https://gitlab.example.com/example/ubuntu-vagrant/raw/master/.gitignore"
+```
+
+It it's not working, you will see content similar to:
+
+```html
+<html><body>You are being <a href="https://gitlab.example.com/users/sign_in">redirected</a>.</body></html>
 ```
 
 Install it as a systemd service:
