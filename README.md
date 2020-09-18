@@ -4,21 +4,13 @@ You can see this used at [rgl/gitlab-vagrant](https://github.com/rgl/gitlab-vagr
 
 # GitLab configuration
 
-Configure GitLab nginx to proxy the Visual Studio requests through our proxy:
+Configure GitLab nginx to proxy the Visual Studio requests through our proxy by applying the patch at:
 
-```
-vim /var/opt/gitlab/nginx/conf/gitlab-http.conf 
-...
-  location / {
-    if ($http_user_agent ~ "(Microsoft-Symbol-Server|SourceLink)") {
-      #proxy_set_header Authorization "Basic cm9vdDpwYXNzd29yZA==";
-      proxy_pass http://127.0.0.1:7000;
-      break;
-    }
-    proxy_cache off;
-    proxy_pass  http://gitlab-workhorse;
-  }
+https://github.com/rgl/gitlab-vagrant/blob/master/gitlab-http.conf-gitlab-source-link-proxy.patch
 
+Restart nginx:
+
+```bash
 gitlab-ctl restart nginx
 ```
 
