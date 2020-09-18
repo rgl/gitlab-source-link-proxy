@@ -10,7 +10,7 @@ Configure GitLab nginx to proxy the Visual Studio requests through our proxy:
 vim /var/opt/gitlab/nginx/conf/gitlab-http.conf 
 ...
   location / {
-    if ($http_user_agent ~ "SourceLink") {
+    if ($http_user_agent ~ "(Microsoft-Symbol-Server|SourceLink)") {
       #proxy_set_header Authorization "Basic cm9vdDpwYXNzd29yZA==";
       proxy_pass http://127.0.0.1:7000;
       break;
