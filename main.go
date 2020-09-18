@@ -91,6 +91,12 @@ func GetCachedAccessToken(c *bicache.Bicache, tokenURL, username, password strin
 }
 
 var (
+	version = "unknown"
+	commit  = "unknown"
+	date    = "unknown"
+)
+
+var (
 	listenAddressFlag      = flag.String("listen-address", "127.0.0.1:7000", "HOSTNAME:PORT where this http proxy listens at (e.g. 127.0.0.1:7000)")
 	baseGitLabURLFlag      = flag.String("gitlab-base-url", "", "GitLab Base URL (e.g. https://gitlab.example.com/)")
 	insecureSkipVerifyFlag = flag.Bool("tls-insecure-skip-verify", false, "Skip GitLab TLS verification")
@@ -98,6 +104,8 @@ var (
 
 func main() {
 	flag.Parse()
+
+	log.Printf("Starting gitlab-source-link-proxy (version %s; commit %s; date %s)", version, commit, date)
 
 	if *baseGitLabURLFlag == "" {
 		log.Printf("Usage of %s:\n", os.Args[0])

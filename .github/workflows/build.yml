@@ -3,16 +3,29 @@ on: [push]
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
-          fetch-depth: 1
-      - name: Set up Go 1.12
-        uses: actions/setup-go@v1
+          fetch-depth: 0
+      - name: Set up Go 1.15
+        uses: actions/setup-go@v2
         with:
-          go-version: 1.12
-        id: go
-      - name: Build
-        run: make
+          go-version: '1.15.2'
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euxo pipefail
+          if [[ $GITHUB_REF == refs/tags/v* ]]; then
+            make release
+          else
+            make release-snapshot
+          fi
+      - name: Archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: |
+            dist/
+            !dist/*/*

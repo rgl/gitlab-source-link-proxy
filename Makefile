@@ -1,16 +1,23 @@
-dist: gitlab-source-link-proxy.tgz
+SHELL = /bin/bash
+GOPATH := $(shell go env GOPATH | tr '\\' '/')
+GOEXE := $(shell go env GOEXE)
+GORELEASER := $(GOPATH)/bin/goreleaser$(GOEXE)
 
-build: gitlab-source-link-proxy
+all: build
 
-gitlab-source-link-proxy: *.go go.*
-	GOOS=linux GOARCH=amd64 go build -v -o $@ -ldflags="-s -w"
+$(GORELEASER):
+	wget -qO- https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | BINDIR=$(GOPATH)/bin sh
 
-gitlab-source-link-proxy.tgz: gitlab-source-link-proxy
-	rm -f $@
-	tar czf $@ $^
-	sha256sum $@
+build: $(GORELEASER)
+	$(GORELEASER) build --skip-validate --rm-dist
+
+release-snapshot: $(GORELEASER)
+	$(GORELEASER) release --snapshot --skip-publish --rm-dist
+
+release: $(GORELEASER)
+	$(GORELEASER) release --rm-dist
 
 clean:
-	rm -rf gitlab-source-link-proxy*
+	rm -rf dist
 
-.PHONY: dist build clean
+.PHONY: all build release-snapshot release clean

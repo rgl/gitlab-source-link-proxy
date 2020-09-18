@@ -31,7 +31,8 @@ make
 Manually run it:
 
 ```bash
-./gitlab-source-link-proxy --gitlab-base-url https://gitlab.example.com
+./dist/gitlab-source-link-proxy_$(go env GOOS)_$(go env GOARCH)/gitlab-source-link-proxy \
+  --gitlab-base-url https://gitlab.example.com
 ```
 
 Try it:
