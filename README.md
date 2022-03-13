@@ -99,3 +99,9 @@ For older versions of Visual Studio 15:
       "gitlab.example.com"="https://gitlab.example.com"
       ```
   4. run `devenv /setup`
+
+# Visual Studio Code OmniSharp configuration
+
+To be able to step through external source code you need to disable `Just My Code` in the [Debugger Launch Settings](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#just-my-code).
+
+**NB There is no support for accessing private repositories, as it does not support authentication. For more information see the [Source Link options documentation](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#source-link-options) and upvote the [#2071 issue](https://github.com/OmniSharp/omnisharp-vscode/issues/2071).**
