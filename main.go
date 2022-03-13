@@ -32,7 +32,7 @@ type AccessTokenResponse struct {
 	//ExpiresInSeconds int32  `json:"expires_in"` // NB GitLab 10.7.3 does not have this. See https://gitlab.com/gitlab-org/gitlab-ce/issues/45000
 }
 
-// see https://docs.gitlab.com/ce/api/oauth2.html#resource-owner-password-credentials
+// see https://docs.gitlab.com/ce/api/oauth2.html#resource-owner-password-credentials-flow
 func GetAccessToken(gitLabTokenURL, username, password string) (*AccessTokenResponse, error) {
 	requestJSON, err := json.Marshal(&AccessTokenRequest{
 		GrantType: "password",
@@ -80,8 +80,8 @@ func GetCachedAccessToken(c *bicache.Bicache, tokenURL, username, password strin
 		if err != nil {
 			return nil, err
 		}
-		if response.TokenType != "bearer" {
-			return nil, fmt.Errorf("Unknown access token type: %s", response.TokenType)
+		if response.TokenType != "Bearer" {
+			return nil, fmt.Errorf("unknown access token type: %s", response.TokenType)
 		}
 		t := []byte(response.AccessToken)
 		v := append(hp[:], t...)
