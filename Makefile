@@ -6,7 +6,7 @@ GORELEASER := $(GOPATH)/bin/goreleaser$(GOEXE)
 all: build
 
 $(GORELEASER):
-	wget -qO- https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | BINDIR=$(GOPATH)/bin sh
+	go install github.com/goreleaser/goreleaser@v1.6.3
 
 build: $(GORELEASER)
 	$(GORELEASER) build --skip-validate --rm-dist
